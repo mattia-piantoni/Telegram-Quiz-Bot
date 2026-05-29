@@ -1,86 +1,123 @@
 import os
 import json
-import random
 import asyncio
-from telegram import Bot
-from telegram.constants import PollType
+from datetime import datetime
+from telegram import Update
+from telegram.ext import Application, CommandHandler, ContextTypes
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
-TOKEN = os.environ["8710648004:AAHwK3ppnY6_H-iYrXtRwf9lP7hrHzCnex4"]
-bot = Bot(token=TOKEN)
+# =========================
+# CONFIG
+# =========================
 
-CHANNELS = ["@harry_potterquiz"]
+TOKEN = os.getenv("BOT_TOKEN")
 
-BANK_FILE = "quiz_bank.json"
+QUIZ_FILE = "quiz_bank.json"
 USED_FILE = "used_questions.json"
 
+CHANNELS = {
+    "auto": "@your_channel_1",
+    "tech": "@your_channel_2"
+}
 
-def load_bank():
-    with open(BANK_FILE, "r", encoding="utf-8") as f:
+# =========================
+# LOAD DATA
+# =========================
+
+def load_quiz():
+    with open(QUIZ_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
 
-
 def load_used():
-    try:
-        with open(USED_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except:
-        return []
-
+    if not os.path.exists(USED_FILE):
+        return {}
+    with open(USED_FILE, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 def save_used(data):
     with open(USED_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
 
+# =========================
+# QUIZ LOGIC
+# =========================
 
-def get_next_question():
-    bank = load_bank()
+def get_next_question(theme, used, quiz_data):
+    questions = quiz_data.get(theme, [])
+
+    used_ids = used.get(theme, [])
+
+    for q in questions:
+        if q["id"] not in used_ids:
+            return q
+
+    return None  # reset or exhausted
+
+
+async def send_quiz(app, theme="auto"):
+    quiz_data = load_quiz()
     used = load_used()
 
-    available = [q for q in bank if q["id"] not in used]
+    channel = CHANNELS.get(theme)
+    if not channel:
+        print(f"No channel for theme {theme}")
+        return
 
-    if not available:
-        used = []
-        save_used(used)
-        available = bank
+    question = get_next_question(theme, used, quiz_data)
 
-    q = random.choice(available)
-    used.append(q["id"])
+    if not question:
+        print(f"No questions left for {theme}")
+        return
+
+    await app.bot.send_poll(
+        chat_id=channel,
+        question=question["question"],
+        options=question["options"],
+        type="quiz",
+        correct_option_id=question["correct_index"],
+        is_anonymous=False
+    )
+
+    used.setdefault(theme, []).append(question["id"])
     save_used(used)
 
-    return q
+    print(f"Sent quiz to {theme} - {datetime.now()}")
 
+# =========================
+# COMMANDS (TEST)
+# =========================
 
-async def send_quiz():
-    q = get_next_question()
+async def test(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Sending test quiz...")
+    await send_quiz(context.application, "auto")
 
-    for channel in CHANNELS:
-        await bot.send_poll(
-            chat_id=channel,
-            question=q["question"],
-            options=q["options"],
-            type=PollType.QUIZ,
-            correct_option_id=q["correct"],
-            explanation=q["explanation"],
-            is_anonymous=True
-        )
-
-        print(f"Inviato su {channel}: {q['id']}")
-
+# =========================
+# MAIN
+# =========================
 
 async def main():
-    print("Bot avviato...")
-
-    await send_quiz()
+    app = Application.builder().token(TOKEN).build()
 
     scheduler = AsyncIOScheduler()
-    scheduler.add_job(send_quiz, "cron", hour=10)
-    scheduler.add_job(send_quiz, "cron", hour=18)
+
+    # 🔥 production schedule
+    scheduler.add_job(send_quiz, "cron", hour=9, minute=0, args=[app, "auto"])
+    scheduler.add_job(send_quiz, "cron", hour=18, minute=0, args=[app, "auto"])
+
+    # 🧪 TEST MODE (disattiva in produzione se vuoi)
+    scheduler.add_job(send_quiz, "interval", minutes=60, args=[app, "auto"])
+
     scheduler.start()
 
-    while True:
-        await asyncio.sleep(3600)
+    app.add_handler(CommandHandler("test", test))
 
+    await app.initialize()
+    await app.start()
+    await app.updater.start_polling()
+
+    print("Bot started...")
+
+    await asyncio.Event().wait()
 
 if __name__ == "__main__":
     asyncio.run(main())
