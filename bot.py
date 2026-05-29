@@ -15,9 +15,9 @@ TOKEN = os.getenv("BOT_TOKEN")
 QUIZ_FILE = "quiz_bank.json"
 USED_FILE = "used_questions.json"
 
+# SOLO HARRY POTTER (come richiesto)
 CHANNELS = {
-    "auto": "@your_channel_1",
-    "tech": "@your_channel_2"
+    "harry_potter": "@harry_potterquiz"
 }
 
 # =========================
@@ -39,73 +39,82 @@ def save_used(data):
         json.dump(data, f, indent=2)
 
 # =========================
-# QUIZ LOGIC
+# LOGIC
 # =========================
 
 def get_next_question(theme, used, quiz_data):
     questions = quiz_data.get(theme, [])
-
     used_ids = used.get(theme, [])
 
     for q in questions:
         if q["id"] not in used_ids:
             return q
 
-    return None  # reset or exhausted
+    # reset se finite (loop infinito contenuti)
+    used[theme] = []
+    return questions[0] if questions else None
 
 
-async def send_quiz(app, theme="auto"):
+async def send_quiz(app, theme="harry_potter"):
     quiz_data = load_quiz()
     used = load_used()
 
     channel = CHANNELS.get(theme)
     if not channel:
-        print(f"No channel for theme {theme}")
+        print(f"[ERROR] Channel missing for {theme}")
         return
 
     question = get_next_question(theme, used, quiz_data)
 
     if not question:
-        print(f"No questions left for {theme}")
+        print(f"[ERROR] No questions for {theme}")
         return
 
-    await app.bot.send_poll(
-        chat_id=channel,
-        question=question["question"],
-        options=question["options"],
-        type="quiz",
-        correct_option_id=question["correct_index"],
-        is_anonymous=False
-    )
+    try:
+        await app.bot.send_poll(
+            chat_id=channel,
+            question=question["question"],
+            options=question["options"],
+            type="quiz",
+            correct_option_id=question["correct_index"],
+            is_anonymous=False
+        )
 
-    used.setdefault(theme, []).append(question["id"])
-    save_used(used)
+        used.setdefault(theme, []).append(question["id"])
+        save_used(used)
 
-    print(f"Sent quiz to {theme} - {datetime.now()}")
+        print(f"[OK] Sent HP quiz at {datetime.now()}")
+
+    except Exception as e:
+        print(f"[ERROR] send_quiz failed: {e}")
 
 # =========================
-# COMMANDS (TEST)
+# MANUAL TEST COMMAND
 # =========================
 
 async def test(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Sending test quiz...")
-    await send_quiz(context.application, "auto")
+    await update.message.reply_text("Invio quiz Harry Potter...")
+    await send_quiz(context.application, "harry_potter")
 
 # =========================
 # MAIN
 # =========================
 
 async def main():
+    if not TOKEN:
+        raise ValueError("BOT_TOKEN mancante su environment variables")
+
     app = Application.builder().token(TOKEN).build()
 
     scheduler = AsyncIOScheduler()
 
-    # 🔥 production schedule
-    scheduler.add_job(send_quiz, "cron", hour=9, minute=0, args=[app, "auto"])
-    scheduler.add_job(send_quiz, "cron", hour=18, minute=0, args=[app, "auto"])
-
-    # 🧪 TEST MODE (disattiva in produzione se vuoi)
-    scheduler.add_job(send_quiz, "interval", minutes=60, args=[app, "auto"])
+    # 🧪 TEST MODE: ogni 2 minuti
+    scheduler.add_job(
+        send_quiz,
+        "interval",
+        minutes=2,
+        args=[app, "harry_potter"]
+    )
 
     scheduler.start()
 
@@ -115,9 +124,10 @@ async def main():
     await app.start()
     await app.updater.start_polling()
 
-    print("Bot started...")
+    print("Bot Harry Potter LIVE...")
 
     await asyncio.Event().wait()
+
 
 if __name__ == "__main__":
     asyncio.run(main())
