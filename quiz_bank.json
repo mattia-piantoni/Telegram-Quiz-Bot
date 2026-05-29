@@ -1,23 +1,44 @@
-[
+"harry_potter": [
   {
     "id": "hp_001",
-    "question": "Qual è il patronus di Harry Potter?",
-    "options": ["Cervo", "Lupo", "Fenice", "Serpente"],
-    "correct": 0,
-    "explanation": "Il patronus di Harry è un cervo 🦌"
+    "question": "In quale casa di Hogwarts si trova Harry Potter?",
+    "options": ["Serpeverde", "Corvonero", "Grifondoro", "Tassorosso"],
+    "correct_index": 2
   },
   {
     "id": "hp_002",
-    "question": "Chi distrugge l’ultimo Horcrux (Nagini)?",
-    "options": ["Harry", "Ron", "Neville", "Hermione"],
-    "correct": 2,
-    "explanation": "Neville uccide Nagini 👀"
+    "question": "Come si chiama la scuola di magia frequentata da Harry?",
+    "options": ["Beauxbatons", "Durmstrang", "Hogwarts", "Ilvermorny"],
+    "correct_index": 2
   },
   {
     "id": "hp_003",
-    "question": "Quale casa frequenta Luna Lovegood?",
-    "options": ["Grifondoro", "Serpeverde", "Corvonero", "Tassorosso"],
-    "correct": 2,
-    "explanation": "Luna è Corvonero 💙"
+    "question": "Qual è il nome del gufo di Harry Potter?",
+    "options": ["Fanny", "Edvige", "Strige", "Errol"],
+    "correct_index": 1
+  },
+  {
+    "id": "hp_004",
+    "question": "Chi è il principale nemico di Harry Potter?",
+    "options": ["Severus Piton", "Lord Voldemort", "Lucius Malfoy", "Sirius Black"],
+    "correct_index": 1
+  },
+  {
+    "id": "hp_005",
+    "question": "Quale incantesimo disarma l’avversario?",
+    "options": ["Expelliarmus", "Avada Kedavra", "Crucio", "Lumos"],
+    "correct_index": 0
+  },
+  {
+    "id": "hp_006",
+    "question": "Qual è il nome della bacchetta di Harry Potter?",
+    "options": ["Legno di quercia", "Legno di agrifoglio", "Legno di salice", "Legno di faggio"],
+    "correct_index": 1
+  },
+  {
+    "id": "hp_007",
+    "question": "Chi insegna Pozioni nei primi anni di Harry?",
+    "options": ["Minerva McGonagall", "Severus Piton", "Rubeus Hagrid", "Gilderoy Allock"],
+    "correct_index": 1
   }
 ]
