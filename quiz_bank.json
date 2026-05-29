@@ -1,0 +1,23 @@
+[
+  {
+    "id": "hp_001",
+    "question": "Qual è il patronus di Harry Potter?",
+    "options": ["Cervo", "Lupo", "Fenice", "Serpente"],
+    "correct": 0,
+    "explanation": "Il patronus di Harry è un cervo 🦌"
+  },
+  {
+    "id": "hp_002",
+    "question": "Chi distrugge l’ultimo Horcrux (Nagini)?",
+    "options": ["Harry", "Ron", "Neville", "Hermione"],
+    "correct": 2,
+    "explanation": "Neville uccide Nagini 👀"
+  },
+  {
+    "id": "hp_003",
+    "question": "Quale casa frequenta Luna Lovegood?",
+    "options": ["Grifondoro", "Serpeverde", "Corvonero", "Tassorosso"],
+    "correct": 2,
+    "explanation": "Luna è Corvonero 💙"
+  }
+]
