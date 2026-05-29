@@ -1,44 +1,61 @@
-"harry_potter": [
-  {
-    "id": "hp_001",
-    "question": "In quale casa di Hogwarts si trova Harry Potter?",
-    "options": ["Serpeverde", "Corvonero", "Grifondoro", "Tassorosso"],
-    "correct_index": 2
-  },
-  {
-    "id": "hp_002",
-    "question": "Come si chiama la scuola di magia frequentata da Harry?",
-    "options": ["Beauxbatons", "Durmstrang", "Hogwarts", "Ilvermorny"],
-    "correct_index": 2
-  },
-  {
-    "id": "hp_003",
-    "question": "Qual è il nome del gufo di Harry Potter?",
-    "options": ["Fanny", "Edvige", "Strige", "Errol"],
-    "correct_index": 1
-  },
-  {
-    "id": "hp_004",
-    "question": "Chi è il principale nemico di Harry Potter?",
-    "options": ["Severus Piton", "Lord Voldemort", "Lucius Malfoy", "Sirius Black"],
-    "correct_index": 1
-  },
-  {
-    "id": "hp_005",
-    "question": "Quale incantesimo disarma l’avversario?",
-    "options": ["Expelliarmus", "Avada Kedavra", "Crucio", "Lumos"],
-    "correct_index": 0
-  },
-  {
-    "id": "hp_006",
-    "question": "Qual è il nome della bacchetta di Harry Potter?",
-    "options": ["Legno di quercia", "Legno di agrifoglio", "Legno di salice", "Legno di faggio"],
-    "correct_index": 1
-  },
-  {
-    "id": "hp_007",
-    "question": "Chi insegna Pozioni nei primi anni di Harry?",
-    "options": ["Minerva McGonagall", "Severus Piton", "Rubeus Hagrid", "Gilderoy Allock"],
-    "correct_index": 1
-  }
-]
+{
+  "harry_potter": [
+    { "id": "hp_001", "question": "In quale casa si trova Harry Potter?", "options": ["Serpeverde", "Corvonero", "Grifondoro", "Tassorosso"], "correct_index": 2 },
+    { "id": "hp_002", "question": "Chi è il nemico principale di Harry Potter?", "options": ["Severus Piton", "Bellatrix Lestrange", "Lord Voldemort", "Lucius Malfoy"], "correct_index": 2 },
+    { "id": "hp_003", "question": "Qual è il nome della scuola di magia?", "options": ["Durmstrang", "Beauxbatons", "Hogwarts", "Ilvermorny"], "correct_index": 2 },
+    { "id": "hp_004", "question": "Qual è il nome del gufo di Harry?", "options": ["Fanny", "Edvige", "Errol", "Pigwidgeon"], "correct_index": 1 },
+    { "id": "hp_005", "question": "Quale incantesimo disarma l’avversario?", "options": ["Expelliarmus", "Avada Kedavra", "Crucio", "Stupeficium"], "correct_index": 0 },
+    { "id": "hp_006", "question": "Chi insegna Pozioni nei primi anni di Harry?", "options": ["Minerva McGonagall", "Severus Piton", "Rubeus Hagrid", "Gilderoy Allock"], "correct_index": 1 },
+    { "id": "hp_007", "question": "Come si chiama il migliore amico di Harry Potter?", "options": ["Draco Malfoy", "Ron Weasley", "Neville Paciock", "Cedric Diggory"], "correct_index": 1 },
+    { "id": "hp_008", "question": "Qual è il nome della sorella di Ron?", "options": ["Luna", "Ginny", "Hermione", "Cho"], "correct_index": 1 },
+    { "id": "hp_009", "question": "Quale sport si gioca su scope volanti?", "options": ["Quidditch", "Muggleball", "Wizardball", "Flyball"], "correct_index": 0 },
+    { "id": "hp_010", "question": "Chi è il preside di Hogwarts per la maggior parte della saga?", "options": ["Snape", "Dumbledore", "McGonagall", "Hagrid"], "correct_index": 1 },
+
+    { "id": "hp_011", "question": "Qual è il nome del castello di Hogwarts?", "options": ["Hogwarts Castle", "Wizard Keep", "Magic Hall", "Sorcery Tower"], "correct_index": 0 },
+    { "id": "hp_012", "question": "Quale pozione rende invisibile?", "options": ["Felix Felicis", "Polisucco", "Amortentia", "Veritaserum"], "correct_index": 1 },
+    { "id": "hp_013", "question": "Chi è il guardiacaccia di Hogwarts?", "options": ["Snape", "Hagrid", "Firenze", "Filch"], "correct_index": 1 },
+    { "id": "hp_014", "question": "Come si chiama il serpente di Voldemort?", "options": ["Nagini", "Basilisco", "Salazar", "Norbert"], "correct_index": 0 },
+    { "id": "hp_015", "question": "Quale incantesimo produce luce dalla bacchetta?", "options": ["Lumos", "Nox", "Accio", "Alohomora"], "correct_index": 0 },
+    { "id": "hp_016", "question": "Chi apre la Camera dei Segreti?", "options": ["Harry", "Tom Riddle", "Draco", "Ron"], "correct_index": 1 },
+    { "id": "hp_017", "question": "Qual è il patronus di Harry?", "options": ["Cervo", "Lupo", "Cane", "Uccello"], "correct_index": 0 },
+    { "id": "hp_018", "question": "Chi uccide Silente?", "options": ["Snape", "Voldemort", "Draco", "Bellatrix"], "correct_index": 0 },
+    { "id": "hp_019", "question": "Come si chiama il giornale del mondo magico?", "options": ["The Daily Prophet", "Magic Times", "Wizard News", "Hogwarts Post"], "correct_index": 0 },
+    { "id": "hp_020", "question": "Chi è il custode di Gringott?", "options": ["Goblin", "Elf", "Wizard", "Mago oscuro"], "correct_index": 0 },
+
+    { "id": "hp_021", "question": "Come si entra nel Binario 9¾?", "options": ["Attraversando il muro", "Usando una chiave magica", "Teletrasporto", "Portale"], "correct_index": 0 },
+    { "id": "hp_022", "question": "Chi è Luna Lovegood?", "options": ["Studentessa di Corvonero", "Insegnante", "Auror", "Goblin"], "correct_index": 0 },
+    { "id": "hp_023", "question": "Qual è la casa di Draco Malfoy?", "options": ["Grifondoro", "Serpeverde", "Corvonero", "Tassorosso"], "correct_index": 1 },
+    { "id": "hp_024", "question": "Chi è il padrino di Harry?", "options": ["Snape", "Sirius Black", "Hagrid", "Dumbledore"], "correct_index": 1 },
+    { "id": "hp_025", "question": "Quale creatura vive nel Lago Nero?", "options": ["Sirena", "Drago", "Basilisco", "Grifone"], "correct_index": 0 },
+
+    { "id": "hp_026", "question": "Quale incantesimo apre le porte?", "options": ["Alohomora", "Expelliarmus", "Lumos", "Obliviate"], "correct_index": 0 },
+    { "id": "hp_027", "question": "Chi insegna Trasfigurazione?", "options": ["McGonagall", "Snape", "Hagrid", "Flitwick"], "correct_index": 0 },
+    { "id": "hp_028", "question": "Qual è il nome del negozio di bacchette?", "options": ["Ollivander", "Gringott", "Flourish & Blotts", "Zonko"], "correct_index": 0 },
+    { "id": "hp_029", "question": "Chi è il fratello di Dumbledore?", "options": ["Aberforth", "Alastor", "Severus", "Rubeus"], "correct_index": 0 },
+    { "id": "hp_030", "question": "Qual è il nome del torneo magico tra scuole?", "options": ["Torneo Tremaghi", "Coppa Magica", "Duello Supremo", "Sfida Incantata"], "correct_index": 0 },
+
+    { "id": "hp_031", "question": "Chi rappresenta la casa Tassorosso?", "options": ["Lealtà", "Ambizione", "Coraggio", "Intelligenza"], "correct_index": 0 },
+    { "id": "hp_032", "question": "Chi è il fondatore di Serpeverde?", "options": ["Salazar", "Godric", "Rowena", "Helga"], "correct_index": 0 },
+    { "id": "hp_033", "question": "Chi è il fondatore di Grifondoro?", "options": ["Salazar", "Godric", "Rowena", "Helga"], "correct_index": 1 },
+    { "id": "hp_034", "question": "Qual è il significato di Avada Kedavra?", "options": ["Morte istantanea", "Stordire", "Curare", "Disarmare"], "correct_index": 0 },
+    { "id": "hp_035", "question": "Chi è il ministro della magia all’inizio della saga?", "options": ["Cornelius Fudge", "Scrimgeour", "Kingsley", "Percy"], "correct_index": 0 },
+
+    { "id": "hp_036", "question": "Chi lavora a Gringott?", "options": ["Goblin", "Elfi domestici", "Stregoni", "Draghi"], "correct_index": 0 },
+    { "id": "hp_037", "question": "Qual è il nome della mappa magica di Hogwarts?", "options": ["Mappa del Malandrino", "Mappa Segreta", "Mappa Invisibile", "Mappa Fantasma"], "correct_index": 0 },
+    { "id": "hp_038", "question": "Chi sono i Malandrini?", "options": ["James, Sirius, Remus, Peter", "Harry, Ron, Draco, Neville", "Snape e amici", "Dumbledore e colleghi"], "correct_index": 0 },
+    { "id": "hp_039", "question": "Chi è il lupo mannaro tra i Malandrini?", "options": ["Sirius", "Peter", "Remus", "James"], "correct_index": 2 },
+    { "id": "hp_040", "question": "Qual è il nome del diario di Tom Riddle?", "options": ["Horcrux", "Grimorio", "Libro Oscuro", "Tomo Nero"], "correct_index": 0 },
+
+    { "id": "hp_041", "question": "Cos’è un Horcrux?", "options": ["Oggetto con frammento di anima", "Pozione", "Incantesimo", "Creatura"], "correct_index": 0 },
+    { "id": "hp_042", "question": "Chi distrugge il diario di Riddle?", "options": ["Harry", "Ron", "Ginny", "Hermione"], "correct_index": 0 },
+    { "id": "hp_043", "question": "Chi è il padre di Draco?", "options": ["Lucius", "Severus", "Sirius", "Arthur"], "correct_index": 0 },
+    { "id": "hp_044", "question": "Qual è il lavoro di Arthur Weasley?", "options": ["Ministero della magia", "Auror", "Insegnante", "Banchiere"], "correct_index": 0 },
+    { "id": "hp_045", "question": "Chi è il fantasma di Grifondoro?", "options": ["Nick-Quasi-Senza-Testa", "Barone Sanguinario", "Monaco Grasso", "Dama Grigia"], "correct_index": 0 },
+
+    { "id": "hp_046", "question": "Chi è il fantasma di Serpeverde?", "options": ["Barone Sanguinario", "Nick", "Dama Grigia", "Monaco"], "correct_index": 0 },
+    { "id": "hp_047", "question": "Chi è il fantasma di Corvonero?", "options": ["Dama Grigia", "Barone", "Nick", "Monaco"], "correct_index": 0 },
+    { "id": "hp_048", "question": "Chi è il fantasma di Tassorosso?", "options": ["Monaco Grasso", "Nick", "Barone", "Dama"], "correct_index": 0 },
+    { "id": "hp_049", "question": "Chi è il proprietario di Dobby?", "options": ["Malfoy", "Potter", "Weasley", "Granger"], "correct_index": 0 },
+    { "id": "hp_050", "question": "Come si libera un elfo domestico?", "options": ["Dando vestiti", "Incantesimo", "Parlando", "Distruggendo catena"], "correct_index": 0 }
+  ]
+}
