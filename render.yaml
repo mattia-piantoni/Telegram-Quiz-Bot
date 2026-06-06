@@ -1,0 +1,13 @@
+services:
+  - type: worker
+    name: telegram-quiz-bot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: CHANNEL_HARRY_POTTER
+        value: "@harry_potterquiz"
+      - key: QUIZ_INTERVAL_MINUTES
+        value: "120"

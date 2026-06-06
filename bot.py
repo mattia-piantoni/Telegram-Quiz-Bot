@@ -12,12 +12,12 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 TOKEN = os.getenv("BOT_TOKEN")
 
-QUIZ_FILE = "quiz_bank.json"
-USED_FILE = "used_questions.json"
+QUIZ_FILE = os.getenv("QUIZ_FILE", "quiz_bank.json")
+USED_FILE = os.getenv("USED_FILE", "used_questions.json")
+QUIZ_INTERVAL_MINUTES = int(os.getenv("QUIZ_INTERVAL_MINUTES", "120"))
 
-# SOLO HARRY POTTER (come richiesto)
 CHANNELS = {
-    "harry_potter": "@harry_potterquiz"
+    "harry_potter": os.getenv("CHANNEL_HARRY_POTTER", "@harry_potterquiz")
 }
 
 # =========================
@@ -83,10 +83,10 @@ async def send_quiz(app, theme="harry_potter"):
         used.setdefault(theme, []).append(question["id"])
         save_used(used)
 
-        print(f"[OK] Sent HP quiz at {datetime.now()}")
+        print(f"[OK] Sent {theme} quiz {question['id']} at {datetime.now()}", flush=True)
 
     except Exception as e:
-        print(f"[ERROR] send_quiz failed: {e}")
+        print(f"[ERROR] send_quiz failed: {e}", flush=True)
 
 # =========================
 # MANUAL TEST COMMAND
@@ -112,7 +112,7 @@ async def main():
     scheduler.add_job(
         send_quiz,
         "interval",
-        minutes=2,
+        minutes=QUIZ_INTERVAL_MINUTES,
         args=[app, "harry_potter"]
     )
 
@@ -124,7 +124,11 @@ async def main():
     await app.start()
     await app.updater.start_polling()
 
-    print("Bot Harry Potter LIVE...")
+    print(
+        f"Bot Harry Potter LIVE. Posting every {QUIZ_INTERVAL_MINUTES} minutes "
+        f"to {CHANNELS['harry_potter']}.",
+        flush=True,
+    )
 
     await asyncio.Event().wait()
 
