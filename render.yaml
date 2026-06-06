@@ -11,3 +11,5 @@ services:
         value: "@harry_potterquiz"
       - key: QUIZ_INTERVAL_MINUTES
         value: "120"
+      - key: SEND_QUIZ_ON_STARTUP
+        value: "true"
