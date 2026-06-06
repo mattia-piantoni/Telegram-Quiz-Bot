@@ -10,7 +10,7 @@ services:
       - key: CHANNEL_HARRY_POTTER
         value: "@harry_potterquiz"
       - key: QUIZ_INTERVAL_MINUTES
-        value: "120"
+        value: "180"
       - key: SEND_QUIZ_ON_STARTUP
         value: "true"
       - key: ENABLE_POLLING
