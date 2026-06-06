@@ -14,4 +14,4 @@ services:
       - key: SEND_QUIZ_ON_STARTUP
         value: "true"
       - key: ENABLE_POLLING
-        value: "true"
+        value: "false"
