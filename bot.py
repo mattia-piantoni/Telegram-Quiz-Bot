@@ -16,6 +16,7 @@ QUIZ_FILE = os.getenv("QUIZ_FILE", "quiz_bank.json")
 USED_FILE = os.getenv("USED_FILE", "used_questions.json")
 QUIZ_INTERVAL_MINUTES = int(os.getenv("QUIZ_INTERVAL_MINUTES", "120"))
 SEND_QUIZ_ON_STARTUP = os.getenv("SEND_QUIZ_ON_STARTUP", "false").lower() == "true"
+ENABLE_POLLING = os.getenv("ENABLE_POLLING", "false").lower() == "true"
 
 CHANNELS = {
     "harry_potter": os.getenv("CHANNEL_HARRY_POTTER", "@harry_potterquiz")
@@ -136,11 +137,17 @@ async def main():
 
     scheduler.start()
 
-    app.add_handler(CommandHandler("test", test))
+    if ENABLE_POLLING:
+        app.add_handler(CommandHandler("test", test))
 
     await app.initialize()
     await app.start()
-    await app.updater.start_polling()
+
+    if ENABLE_POLLING:
+        await app.updater.start_polling()
+        print("Telegram polling enabled for /test command.", flush=True)
+    else:
+        print("Telegram polling disabled. Running as scheduled publisher only.", flush=True)
 
     print(
         f"Bot Harry Potter LIVE. Posting every {QUIZ_INTERVAL_MINUTES} minutes "

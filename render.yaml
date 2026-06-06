@@ -13,3 +13,5 @@ services:
         value: "120"
       - key: SEND_QUIZ_ON_STARTUP
         value: "true"
+      - key: ENABLE_POLLING
+        value: "false"
