@@ -10,7 +10,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 # CONFIG
 # =========================
 
-TOKEN = os.getenv("BOT_TOKEN")
+TOKEN = os.getenv("BOT_TOKEN") or os.getenv("TELEGRAM_BOT_TOKEN")
 
 QUIZ_FILE = os.getenv("QUIZ_FILE", "quiz_bank.json")
 USED_FILE = os.getenv("USED_FILE", "used_questions.json")
@@ -121,7 +121,10 @@ async def test(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def main():
     if not TOKEN:
-        raise ValueError("BOT_TOKEN mancante su environment variables")
+        raise ValueError(
+            "Missing Telegram bot token. Set BOT_TOKEN in Render environment variables "
+            "using the token from BotFather."
+        )
 
     app = Application.builder().token(TOKEN).build()
 
