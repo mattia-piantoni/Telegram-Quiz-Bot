@@ -96,7 +96,7 @@ async def send_quiz(app, theme="harry_potter"):
             options=question["options"],
             type="quiz",
             correct_option_id=question["correct_index"],
-            is_anonymous=False
+            is_anonymous=True
         )
 
         used.setdefault(theme, []).append(question["id"])
